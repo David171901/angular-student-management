@@ -14,3 +14,8 @@
 .example-sidenav {
   padding: 20px;
 }
+
+.activated {
+  background: #f0f0f04b;
+  border-radius: 8px;
+}

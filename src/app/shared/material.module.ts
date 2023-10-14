@@ -10,6 +10,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -24,6 +31,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    MatListModule,
+
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule,
   ],
   exports: [
     MatToolbarModule, 
@@ -35,6 +49,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    MatListModule,
+
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule { }

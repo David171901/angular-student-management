@@ -1,6 +1,23 @@
 <mat-drawer-container class="example-container" autosize hasBackdrop="true">
   <mat-drawer #drawer class="example-sidenav" mode="over" [opened]="showSidebar">
-    <p>Auto-resizing sidenav</p>
+    <mat-list role="list" style="width: 320px;">
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <div matListItemTitle>Inicio</div>
+      </mat-list-item>
+      <mat-list-item role="listitem" [activated]="true" class="activated">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <div matListItemTitle>Usuarios</div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <div matListItemTitle>Reportes</div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>exit_to_app</mat-icon>
+        <div matListItemTitle>Cerrar Sesión</div>
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
   <main>
     <ng-content></ng-content>
