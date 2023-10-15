@@ -4,47 +4,47 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
     <!-- Firstname Column -->
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef> Nombres </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
       <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
     </ng-container>
 
     <!-- Lastname Column -->
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
       <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 
     <!-- Document Number Column -->
     <ng-container matColumnDef="documentNumber">
-      <th mat-header-cell *matHeaderCellDef> Número de documento </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Número de documento </th>
       <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 
     <!-- Dod Column -->
     <ng-container matColumnDef="dob">
-      <th mat-header-cell *matHeaderCellDef> Fecha de nacimiento </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de nacimiento </th>
       <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Correo electrónico </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo electrónico </th>
       <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 
     <!-- Education Column -->
     <ng-container matColumnDef="education">
-      <th mat-header-cell *matHeaderCellDef> Grado académico </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Grado académico </th>
       <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 

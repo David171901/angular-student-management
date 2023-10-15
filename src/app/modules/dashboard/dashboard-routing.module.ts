@@ -5,7 +5,7 @@ import { CoursesPageComponent } from './courses/pages/courses-page/courses-page.
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'users',
     component: UsersPageComponent,
     loadChildren: () => import(`./users/users.module`).then(m => m.UsersModule),
   },

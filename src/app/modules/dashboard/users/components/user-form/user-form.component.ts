@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -21,14 +21,20 @@ export class UserFormComponent {
 
   constructor(private _fb: FormBuilder) {
     this.userForm = this._fb.group({
-      firstName: '',
-      lastName: '',
-      documentNumber: '',
-      dob: '',
-      gender: '',
-      email: '',
-      phoneNumber: '',
-      education: '',
+      firstName: ['',Validators.required],
+      lastName: ['',Validators.required],
+      documentNumber: ['',Validators.required],
+      dob: ['',Validators.required],
+      gender: ['',Validators.required],
+      email: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      education: ['',Validators.required],
     })
+  }
+
+  onSubmit(): void {
+    if (this.userForm.valid){
+      console.log('onSubmit')
+    }
   }
 }

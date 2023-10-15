@@ -1,11 +1,11 @@
-<mat-drawer-container class="example-container" autosize hasBackdrop="true">
-  <mat-drawer #drawer class="example-sidenav" mode="over" [opened]="showSidebar">
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="showSidebar">
     <mat-list role="list" style="width: 320px;">
-      <mat-list-item role="listitem">
+      <mat-list-item role="listitem" [routerLink]="['/']">
         <mat-icon matListItemIcon>home</mat-icon>
         <div matListItemTitle>Inicio</div>
       </mat-list-item>
-      <mat-list-item role="listitem" [activated]="true" class="activated">
+      <mat-list-item role="listitem" [routerLink]="['/users']">
         <mat-icon matListItemIcon>person</mat-icon>
         <div matListItemTitle>Usuarios</div>
       </mat-list-item>
@@ -13,7 +13,7 @@
         <mat-icon matListItemIcon>folder</mat-icon>
         <div matListItemTitle>Reportes</div>
       </mat-list-item>
-      <mat-list-item role="listitem">
+      <mat-list-item role="listitem" [routerLink]="['/auth']">
         <mat-icon matListItemIcon>exit_to_app</mat-icon>
         <div matListItemTitle>Cerrar Sesión</div>
       </mat-list-item>
