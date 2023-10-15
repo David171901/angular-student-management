@@ -23,7 +23,7 @@ export class UserTableComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource<User>(this._usersService.getUsersList());
   }
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'documentNumber', 'dob', 'email', 'education', 'action'];
+  displayedColumns: string[] = ['firstName', 'documentNumber', 'dob', 'email', 'education', 'action'];
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
