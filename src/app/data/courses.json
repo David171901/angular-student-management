@@ -1,0 +1,104 @@
+{
+  "data": [
+    {
+      "id": "5b26f5a4-5b57-492b-9a46-825f6440341c",
+      "courseName": "Introducción a la Programación",
+      "courseDescription": "Aprenda los conceptos básicos de la programación",
+      "professor": "John Smith",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-11-01",
+      "endDate": "2024-03-15",
+      "maxStudents": 50
+    },
+    {
+      "id": "6a8d19ec-9362-4f90-96a1-194318e0e15b",
+      "courseName": "Desarrollo Web Avanzado",
+      "courseDescription": "Aprende a crear aplicaciones web avanzadas",
+      "professor": "Maria López",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-09-15",
+      "endDate": "2024-01-30",
+      "maxStudents": 30
+    },
+    {
+      "id": "a2cbb0b2-7435-4a7e-af2d-6e1f758b6b59",
+      "courseName": "Algoritmos y Estructuras de Datos",
+      "courseDescription": "Estudio de algoritmos y estructuras de datos",
+      "professor": "Carlos Rodríguez",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-10-05",
+      "endDate": "2024-02-20",
+      "maxStudents": 40
+    },
+    {
+      "id": "d452de0b-93eb-483a-8469-928b107b2447",
+      "courseName": "Desarrollo de Aplicaciones Móviles",
+      "courseDescription": "Creación de aplicaciones móviles para iOS y Android",
+      "professor": "Ana Martínez",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-09-10",
+      "endDate": "2024-01-25",
+      "maxStudents": 25
+    },
+    {
+      "id": "c6ce8b48-382a-47d7-9b57-16d28e3e4ff2",
+      "courseName": "Introducción a la Programación en Python",
+      "courseDescription": "Aprende a programar en Python desde cero",
+      "professor": "Emily Johnson",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-11-15",
+      "endDate": "2024-04-01",
+      "maxStudents": 35
+    },
+    {
+      "id": "3e8cb5c1-e786-4c96-8935-77eeb48b0c7f",
+      "courseName": "Programación en C++",
+      "courseDescription": "Dominio de programación en C++",
+      "professor": "David Brown",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-10-20",
+      "endDate": "2024-03-05",
+      "maxStudents": 45
+    },
+    {
+      "id": "c59a1e87-5c9f-4d68-9c0c-69c3a7d9d33a",
+      "courseName": "Diseño de Interfaces de Usuario",
+      "courseDescription": "Creación de interfaces de usuario atractivas",
+      "professor": "Luis García",
+      "area": "Diseño",
+      "startDate": "2023-09-25",
+      "endDate": "2024-02-10",
+      "maxStudents": 30
+    },
+    {
+      "id": "2d68c9a3-d78e-48ad-84c1-ef2565a4e8de",
+      "courseName": "Desarrollo de Videojuegos",
+      "courseDescription": "Creación de videojuegos interactivos",
+      "professor": "Sara Wilson",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-10-10",
+      "endDate": "2024-02-25",
+      "maxStudents": 20
+    },
+    {
+      "id": "8b9d56e7-675d-491e-92c2-1b5051bf7f90",
+      "courseName": "Inteligencia Artificial",
+      "courseDescription": "Estudio de la inteligencia artificial y el aprendizaje automático",
+      "professor": "Juan Pérez",
+      "area": "Programación y Desarrollo",
+      "startDate": "2023-11-05",
+      "endDate": "2024-03-20",
+      "maxStudents": 40
+    },
+    {
+      "id": "4e785fda-6dcb-40f5-9ef3-e369f1591c9c",
+      "courseName": "Seguridad Cibernética",
+      "courseDescription": "Protección de sistemas y datos en línea",
+      "professor": "Laura Torres",
+      "area": "Seguridad",
+      "startDate": "2023-09-20",
+      "endDate": "2024-02-05",
+      "maxStudents": 35
+    }
+  ]
+}

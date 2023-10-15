@@ -1,0 +1,70 @@
+<div mat-dialog-title>
+  <h1>{{ course ? "Editar curso" : "Crear curso" }}</h1>
+</div>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Curso</mat-label>
+        <input matInput type="text" placeholder="Ex. Angular" formControlName="courseName">
+        <mat-error>
+          {{ courseForm.get("courseName")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción del Curso</mat-label>
+        <input matInput type="text"
+          placeholder="Ex. Aprenderás a crear y mantener aplicaciones web en una sola página con Angular."
+          formControlName="courseDescription">
+        <mat-error>
+          {{ courseForm.get("courseDescription")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Áreas</mat-label>
+        <mat-select formControlName="area">
+          <mat-option *ngFor="let val of areas" [value]="val">{{val}}</mat-option>
+        </mat-select>
+        <mat-error>
+          {{ courseForm.get("area")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Inicio y Fin</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Fecha inicio" formControlName="startDate">
+          <input matEndDate placeholder="Fecha fin" formControlName="endDate">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Profesor</mat-label>
+        <input matInput type="text" placeholder="Ex. John Doe" formControlName="professor">
+        <mat-error>
+          {{ courseForm.get("professor")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Vacantes</mat-label>
+        <input matInput type="number" placeholder="Ex. 992871521"  formControlName="maxStudents">
+        <mat-error>
+          {{ courseForm.get("maxStudents")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field> 
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">{{ course ? "Editar" : "Guardar" }}</button>
+  </div>
+</form>
