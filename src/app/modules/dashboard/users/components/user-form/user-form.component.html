@@ -30,7 +30,7 @@
       </mat-form-field> 
       <mat-form-field appearance="outline">
         <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dob" [max]="maxDate">
+        <input matInput [matDatepicker]="picker" formControlName="dob" [max]="maxDate" [min]="minDate">
         <mat-error>
           {{ userForm.get("dob")?.errors | formErrors }}
         </mat-error>

@@ -21,10 +21,12 @@ export class UserFormComponent {
     'Otro',
   ];
   maxDate: Date;
+  minDate: Date;
 
   constructor(private _fb: FormBuilder, public _dialog: MatDialogRef<UserFormComponent>) {
     const currentYear = new Date().getFullYear();
     this.maxDate = new Date();
+    this.minDate = new Date(currentYear - 100, 0, 1);
 
     this.userForm = this._fb.group({
       firstName: ['', [Validators.required, lettersOnlyValidator()]],

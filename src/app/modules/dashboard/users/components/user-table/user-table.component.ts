@@ -7,6 +7,7 @@ import { User } from 'src/app/core/user';
 import { UsersService } from 'src/app/services/users.service';
 import { UserFormComponent } from '../user-form/user-form.component';
 import * as moment from 'moment';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-user-table',
@@ -42,7 +43,7 @@ export class UserTableComponent implements AfterViewInit {
     }
   }
 
-  openAddEditEmpForm() {
+  openAddEditUserForm() {
     this._dialog
     .open(UserFormComponent)
     .afterClosed()
@@ -66,11 +67,18 @@ export class UserTableComponent implements AfterViewInit {
   }
 
   deleteUser(userId: string): void {
-    if (confirm('Esta seguro?')) {
-      this.res = this.res.filter((u) => u.id !== userId);
-      this.dataSource = new MatTableDataSource<User>(this.res);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
+    this._dialog
+    .open(ConfirmationDialogComponent)
+    .afterClosed()
+    .subscribe({
+      next: (v: Boolean) => {
+        if(v) {
+          this.res = this.res.filter((u) => u.id !== userId);
+          this.dataSource = new MatTableDataSource<User>(this.res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      },
+    });
   }
 }
