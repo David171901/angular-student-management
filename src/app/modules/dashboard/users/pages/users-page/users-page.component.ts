@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from '../../components/user-form/user-form.component';
+import { User } from 'src/app/core/user';
+import { UsersService } from 'src/app/services/users.service';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 
 @Component({
   selector: 'app-users-page',
@@ -9,10 +12,6 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
 })
 export class UsersPageComponent {
 
-  constructor(public _dialog: MatDialog) { }
+  constructor() { }
 
-
-  openAddEditEmpForm() {
-    const dialogRef = this._dialog.open(UserFormComponent);
-  }
 }

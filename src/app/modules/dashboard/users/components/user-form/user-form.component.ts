@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { lettersOnlyValidator, phoneNumberValidator } from 'src/app/utils/custom-validators';
 
 @Component({
   selector: 'app-user-form',
@@ -18,23 +20,29 @@ export class UserFormComponent {
     'Doctorado',
     'Otro',
   ];
+  maxDate: Date;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, public _dialog: MatDialogRef<UserFormComponent>) {
+    const currentYear = new Date().getFullYear();
+    this.maxDate = new Date();
+
     this.userForm = this._fb.group({
-      firstName: ['',Validators.required],
-      lastName: ['',Validators.required],
-      documentNumber: ['',Validators.required],
-      dob: ['',Validators.required],
-      gender: ['',Validators.required],
-      email: ['',Validators.required],
-      phoneNumber: ['',Validators.required],
-      education: ['',Validators.required],
+      firstName: ['', [Validators.required, lettersOnlyValidator()]],
+      lastName: ['', [Validators.required, lettersOnlyValidator()]],
+      documentNumber: ['', Validators.required],
+      dob: [, Validators.required],
+      gender: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, phoneNumberValidator()]],
+      education: ['', Validators.required],
     })
   }
 
   onSubmit(): void {
-    if (this.userForm.valid){
-      console.log('onSubmit')
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+    } else {
+      this._dialog.close(this.userForm.value);
     }
   }
 }

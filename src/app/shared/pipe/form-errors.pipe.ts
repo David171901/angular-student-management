@@ -19,7 +19,15 @@ export class FormErrorsPipe implements PipeTransform {
     }
 
     if ('email' in value) {
-      errorMessages.push('Debe ser un correo valido');
+      errorMessages.push('Ingresa un correo válido');
+    }
+
+    if ('lettersOnly' in value) {
+      errorMessages.push('Ingresa solo letras');
+    }
+
+    if ('phoneNumberInvalid' in value) {
+      errorMessages.push('Ingresa un teléfono válido');
     }
 
     return errorMessages.join('. ');

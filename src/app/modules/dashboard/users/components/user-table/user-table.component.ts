@@ -1,7 +1,12 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Output, Input, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { User } from 'src/app/core/user';
+import { UsersService } from 'src/app/services/users.service';
+import { UserFormComponent } from '../user-form/user-form.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-table',
@@ -9,9 +14,16 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent implements AfterViewInit {
+  res!: User[];
+  dataSource! : any;
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'documentNumber', 'dob', 'email', 'education', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  constructor(public _dialog: MatDialog, private _usersService: UsersService) {
+    this.res = this._usersService.getUsersList();
+    this.dataSource = new MatTableDataSource<User>(this._usersService.getUsersList());
+  }
+
+  displayedColumns: string[] = ['firstName', 'lastName', 'documentNumber', 'dob', 'email', 'education', 'action'];
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,34 +41,36 @@ export class UserTableComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-export interface PeriodicElement {
-  id: number;
-  firstName: string;
-  weight: number;
-  symbol: string;
-}
+  openAddEditEmpForm() {
+    this._dialog
+    .open(UserFormComponent)
+    .afterClosed()
+    .subscribe({
+      next: (v: User) => {
+        if (!!v) {
+          this.res = [
+            {
+              ...v,
+              dob: moment(v.dob as Date).format('YYYY-MM-DD'),
+              id: crypto.randomUUID(),
+            },
+            ...this.res,
+          ];
+          this.dataSource = new MatTableDataSource<User>(this.res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      },
+    });
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, firstName: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {id: 2, firstName: 'Helium', weight: 4.0026, symbol: 'He'},
-  {id: 3, firstName: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {id: 4, firstName: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {id: 5, firstName: 'Boron', weight: 10.811, symbol: 'B'},
-  {id: 6, firstName: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {id: 7, firstName: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {id: 8, firstName: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {id: 9, firstName: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {id: 10, firstName: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {id: 11, firstName: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {id: 12, firstName: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {id: 13, firstName: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {id: 14, firstName: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {id: 15, firstName: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {id: 16, firstName: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {id: 17, firstName: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {id: 18, firstName: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {id: 19, firstName: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {id: 20, firstName: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
+  deleteUser(userId: string): void {
+    if (confirm('Esta seguro?')) {
+      this.res = this.res.filter((u) => u.id !== userId);
+      this.dataSource = new MatTableDataSource<User>(this.res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+  }
+}
