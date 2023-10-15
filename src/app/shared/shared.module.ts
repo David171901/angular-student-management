@@ -6,13 +6,17 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { RouterModule } from '@angular/router';
 import { FormErrorsPipe } from './pipe/form-errors.pipe';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { FullNamePipe } from './pipe/full-name.pipe';
+import { UppercaseDirective } from './directive/uppercase.directive';
 
 @NgModule({
   declarations: [
     ToolbarComponent,
     SideBarComponent,
-    FormErrorsPipe,
     ConfirmationDialogComponent,
+    FormErrorsPipe,
+    FullNamePipe,
+    UppercaseDirective,
   ],
   imports: [
     CommonModule,
@@ -23,8 +27,10 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MaterialModule,
     ToolbarComponent,
     SideBarComponent,
-    FormErrorsPipe,
     ConfirmationDialogComponent,
+    FormErrorsPipe,
+    FullNamePipe,
+    UppercaseDirective,
   ]
 })
 export class SharedModule { }
