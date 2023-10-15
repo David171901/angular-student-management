@@ -9,7 +9,11 @@
         <mat-icon matListItemIcon>person</mat-icon>
         <div matListItemTitle>Usuarios</div>
       </mat-list-item>
-      <mat-list-item role="listitem">
+      <mat-list-item role="listitem" [routerLink]="['/courses']">
+        <mat-icon matListItemIcon>book</mat-icon>
+        <div matListItemTitle>Cursos</div>
+      </mat-list-item>
+      <mat-list-item role="listitem" [routerLink]="['/reports']">
         <mat-icon matListItemIcon>folder</mat-icon>
         <div matListItemTitle>Reportes</div>
       </mat-list-item>

@@ -68,7 +68,9 @@ export class UserTableComponent implements AfterViewInit {
 
   deleteUser(userId: string): void {
     this._dialog
-    .open(ConfirmationDialogComponent)
+    .open(ConfirmationDialogComponent, {
+      data: "¿Estas seguro que deseas eliminar este usuario?"
+    })
     .afterClosed()
     .subscribe({
       next: (v: Boolean) => {
@@ -80,5 +82,25 @@ export class UserTableComponent implements AfterViewInit {
         }
       },
     });
+  }
+
+  editUser(user: User): void {
+    this._dialog
+      .open(UserFormComponent, {
+        data: user,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (v) => {
+          if (!!v) {
+            this.res = this.res.map((u) =>
+              u.id === user.id ? { ...u, ...v } : u
+            );
+            this.dataSource = new MatTableDataSource<User>(this.res);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+        },
+      });
   }
 }

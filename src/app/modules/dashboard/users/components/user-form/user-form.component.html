@@ -1,5 +1,7 @@
 <div mat-dialog-title>
-  <h1>Formulario de estudiantes</h1>
+  
+
+  <h1>{{ user ? "Editar usuario" : "Crear usuario" }}</h1>
 </div>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content class="content">
@@ -78,7 +80,7 @@
     </div>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">{{ user ? "Editar" : "Guardar" }}</button>
   </div>
 </form>

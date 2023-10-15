@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { User } from 'src/app/core/user';
 import { lettersOnlyValidator, phoneNumberValidator } from 'src/app/utils/custom-validators';
 
 @Component({
@@ -23,7 +24,11 @@ export class UserFormComponent {
   maxDate: Date;
   minDate: Date;
 
-  constructor(private _fb: FormBuilder, public _dialog: MatDialogRef<UserFormComponent>) {
+  constructor(
+    private _fb: FormBuilder, 
+    public _dialog: MatDialogRef<UserFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public user?: User
+  ) {
     const currentYear = new Date().getFullYear();
     this.maxDate = new Date();
     this.minDate = new Date(currentYear - 100, 0, 1);
@@ -38,6 +43,10 @@ export class UserFormComponent {
       phoneNumber: ['', [Validators.required, phoneNumberValidator()]],
       education: ['', Validators.required],
     })
+
+    if (this.user) {
+      this.userForm.patchValue(this.user);
+    }
   }
 
   onSubmit(): void {

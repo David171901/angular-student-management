@@ -8,7 +8,7 @@
       "gender": "male",
       "email": "johndoe@example.com",
       "phoneNumber": 912345678,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "A1B2C3D4"
     },
     {
@@ -19,7 +19,7 @@
       "gender": "female",
       "email": "janesmith@example.com",
       "phoneNumber": 923456789,
-      "education": "Master's Degree",
+      "education": "Maestría",
       "id": "B2C3D4E5"
     },
     {
@@ -30,7 +30,7 @@
       "gender": "male",
       "email": "davidjohnson@example.com",
       "phoneNumber": 934567890,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "C3D4E5F6"
     },
     {
@@ -41,7 +41,7 @@
       "gender": "female",
       "email": "emilybrown@example.com",
       "phoneNumber": 945678901,
-      "education": "Technical School",
+      "education": "Técnico",
       "id": "D4E5F6G7"
     },
     {
@@ -52,7 +52,7 @@
       "gender": "male",
       "email": "michaellee@example.com",
       "phoneNumber": 956789012,
-      "education": "Doctorate Degree",
+      "education": "Doctorado",
       "id": "E5F6G7H8"
     },
     {
@@ -63,7 +63,7 @@
       "gender": "female",
       "email": "oliviawang@example.com",
       "phoneNumber": 967890123,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "F6G7H8I9"
     },
     {
@@ -74,7 +74,7 @@
       "gender": "female",
       "email": "sophiakim@example.com",
       "phoneNumber": 978901234,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "G7H8I9J0"
     },
     {
@@ -85,7 +85,7 @@
       "gender": "male",
       "email": "danielchen@example.com",
       "phoneNumber": 989012345,
-      "education": "Master's Degree",
+      "education": "Maestría",
       "id": "H8I9J0K1"
     },
     {
@@ -96,7 +96,7 @@
       "gender": "female",
       "email": "avanguyen@example.com",
       "phoneNumber": 990123456,
-      "education": "Technical School",
+      "education": "Técnico",
       "id": "I9J0K1L2"
     },
     {
@@ -107,7 +107,7 @@
       "gender": "female",
       "email": "miagarcia@example.com",
       "phoneNumber": 912345671,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "A1B2C3D4"
     },
     {
@@ -118,7 +118,7 @@
       "gender": "male",
       "email": "jacobmartinez@example.com",
       "phoneNumber": 923456782,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "B2C3D4E5"
     },
     {
@@ -129,7 +129,7 @@
       "gender": "female",
       "email": "isabellalopez@example.com",
       "phoneNumber": 934567893,
-      "education": "Doctorate Degree",
+      "education": "Doctorado",
       "id": "C3D4E5F6"
     },
     {
@@ -140,7 +140,7 @@
       "gender": "male",
       "email": "ethanhernandez@example.com",
       "phoneNumber": 945678904,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "D4E5F6G7"
     },
     {
@@ -151,7 +151,7 @@
       "gender": "female",
       "email": "abigailclark@example.com",
       "phoneNumber": 956789015,
-      "education": "Master's Degree",
+      "education": "Maestría",
       "id": "E5F6G7H8"
     },
     {
@@ -162,7 +162,7 @@
       "gender": "male",
       "email": "alexanderrodriguez@example.com",
       "phoneNumber": 967890126,
-      "education": "Technical School",
+      "education": "Técnico",
       "id": "F6G7H8I9"
     },
     {
@@ -173,7 +173,7 @@
       "gender": "female",
       "email": "sofialewis@example.com",
       "phoneNumber": 978901237,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "G7H8I9J0"
     },
     {
@@ -184,7 +184,7 @@
       "gender": "male",
       "email": "jameslee@example.com",
       "phoneNumber": 989012348,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "H8I9J0K1"
     },
     {
@@ -195,7 +195,7 @@
       "gender": "female",
       "email": "charlottewalker@example.com",
       "phoneNumber": 990123459,
-      "education": "Doctorate Degree",
+      "education": "Doctorado",
       "id": "I9J0K1L2"
     },
     {
@@ -206,7 +206,7 @@
       "gender": "male",
       "email": "benjaminhall@example.com",
       "phoneNumber": 912345670,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "A1B2C3D4"
     },
     {
@@ -217,7 +217,7 @@
       "gender": "female",
       "email": "ameliayoung@example.com",
       "phoneNumber": 923456781,
-      "education": "Master's Degree",
+      "education": "Maestría",
       "id": "B2C3D4E5"
     },
     {
@@ -228,7 +228,7 @@
       "gender": "male",
       "email": "liamwhite@example.com",
       "phoneNumber": 934567892,
-      "education": "Technical School",
+      "education": "Técnico",
       "id": "C3D4E5F6"
     },
     {
@@ -239,7 +239,7 @@
       "gender": "female",
       "email": "harperharris@example.com",
       "phoneNumber": 945678903,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "D4E5F6G7"
     },
     {
@@ -250,7 +250,7 @@
       "gender": "male",
       "email": "lucasmartin@example.com",
       "phoneNumber": 956789014,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "E5F6G7H8"
     },
     {
@@ -261,7 +261,7 @@
       "gender": "female",
       "email": "evelynthompson@example.com",
       "phoneNumber": 967890125,
-      "education": "Doctorate Degree",
+      "education": "Doctorado",
       "id": "F6G7H8I9"
     },
     {
@@ -272,7 +272,7 @@
       "gender": "male",
       "email": "henrygarcia@example.com",
       "phoneNumber": 978901236,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "G7H8I9J0"
     },
     {
@@ -283,7 +283,7 @@
       "gender": "female",
       "email": "victoriamartinez@example.com",
       "phoneNumber": 989012347,
-      "education": "Master's Degree",
+      "education": "Maestría",
       "id": "H8I9J0K1"
     },
     {
@@ -294,7 +294,7 @@
       "gender": "male",
       "email": "sebastianlopez@example.com",
       "phoneNumber": 990123458,
-      "education": "Technical School",
+      "education": "Técnico",
       "id": "I9J0K1L2"
     },
     {
@@ -305,7 +305,7 @@
       "gender": "female",
       "email": "scarletthernandez@example.com",
       "phoneNumber": 912345679,
-      "education": "High School",
+      "education": "Secundaria",
       "id": "A1B2C3D4"
     },
     {
@@ -316,7 +316,7 @@
       "gender": "female",
       "email": "zoeclark@example.com",
       "phoneNumber": 923456780,
-      "education": "Bachelor's Degree",
+      "education": "Licenciatura",
       "id": "B2C3D4E5"
     },
     {
@@ -327,7 +327,7 @@
       "gender": "male",
       "email": "gavinrodriguez@example.com",
       "phoneNumber": 934567891,
-      "education": "Doctorate Degree",
+      "education": "Doctorado",
       "id": "C3D4E5F6"
     }
   ]
