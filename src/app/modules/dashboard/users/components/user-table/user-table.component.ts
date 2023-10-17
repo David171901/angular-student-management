@@ -4,10 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { User } from 'src/app/core/user';
-import { UsersService } from 'src/app/services/users.service';
 import { UserFormComponent } from '../user-form/user-form.component';
 import * as moment from 'moment';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-user-table',
@@ -20,7 +20,7 @@ export class UserTableComponent implements AfterViewInit {
 
   constructor(public _dialog: MatDialog, private _usersService: UsersService) {
     this.res = this._usersService.getUsersList();
-    this.dataSource = new MatTableDataSource<User>(this._usersService.getUsersList());
+    this.dataSource = new MatTableDataSource<User>(this.res);
   }
 
   displayedColumns: string[] = ['firstName', 'documentNumber', 'dob', 'email', 'education', 'action'];

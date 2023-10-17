@@ -11,13 +11,13 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
-
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -39,6 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatRadioModule,
     MatSelectModule,
     MatSortModule,
+    MatCardModule,
   ],
   exports: [
     MatToolbarModule, 
@@ -57,6 +58,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatRadioModule,
     MatSelectModule,
     MatSortModule,
+    MatCardModule,
   ],
 })
 export class MaterialModule { }
