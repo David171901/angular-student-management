@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth-page.component.css']
 })
 export class AuthPageComponent {
-
+  hide = true;
 }

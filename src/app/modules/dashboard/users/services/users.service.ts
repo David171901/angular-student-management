@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import * as dataRaw from '../data/courses.json'
+import * as dataRaw from '../../../../data/users.json'
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesService {
+export class UsersService {
 
   constructor() { }
 
-  getCoursesList() {
+  getUsersList() {
     const {data}: any = (dataRaw as any).default;
     return data;
   }

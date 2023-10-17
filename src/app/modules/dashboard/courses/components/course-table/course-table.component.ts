@@ -3,11 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Course } from 'src/app/core/course';
-import { CoursesService } from 'src/app/services/courses.service';
 import { MatSort } from '@angular/material/sort';
 import { CourseFormComponent } from '../course-form/course-form.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import * as moment from 'moment';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-course-table',
@@ -20,7 +20,7 @@ export class CourseTableComponent implements AfterViewInit {
 
   constructor(public _dialog: MatDialog, private _coursesService: CoursesService) {
     this.res = this._coursesService.getCoursesList();
-    this.dataSource = new MatTableDataSource<Course>(this._coursesService.getCoursesList());
+    this.dataSource = new MatTableDataSource<Course>(this.res);
   }
 
   displayedColumns: string[] = ['courseName', 'courseDescription', 'professor', 'area', 'maxStudents', 'action'];

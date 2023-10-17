@@ -1,0 +1,22 @@
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--mat-sidenav-content-text-color);
+  background-color: var(--mat-sidenav-content-background-color);
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+}
+
+.card  mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
