@@ -21,7 +21,7 @@
         <mat-icon matListItemIcon>folder</mat-icon>
         <div matListItemTitle>Reportes</div>
       </mat-list-item>
-      <mat-list-item role="listitem" [routerLink]="['/auth/login']">
+      <mat-list-item role="listitem" (click)="logout()">
         <mat-icon matListItemIcon>exit_to_app</mat-icon>
         <div matListItemTitle>Cerrar Sesión</div>
       </mat-list-item>

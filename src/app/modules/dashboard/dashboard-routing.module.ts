@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'reports',
     component: ReportsPageComponent,
     loadChildren: () => import(`./reports/reports.module`).then(m => m.ReportsModule),
+  },
+  {
+    path: '**',
+    redirectTo: '/board'
   }
 ];
 
