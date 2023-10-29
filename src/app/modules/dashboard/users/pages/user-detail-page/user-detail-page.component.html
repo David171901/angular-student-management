@@ -1,0 +1,30 @@
+<div class="main-div" *ngIf="user">
+  <span class="back" [routerLink]="['/users']">Usuarios</span> / <span>Perfil</span>
+  <br><br>
+  <mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <ng-container *ngIf="user.gender === 'male'; else (user.gender === 'female' ? femaleImage : otherImage)">
+          <img src="https://randomuser.me/api/portraits/thumb/men/20.jpg" class="header-image">
+        </ng-container>
+        <ng-template #femaleImage>
+          <img src="https://randomuser.me/api/portraits/thumb/women/10.jpg" class="header-image">
+        </ng-template>
+        <ng-template #otherImage>
+          <img src="" class="header-image">
+        </ng-template>
+      </div>
+      <mat-card-title>{{user.firstName | fullName:user.lastName}}</mat-card-title>
+      <mat-card-subtitle>Id: {{user.id}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <br>
+      <p>Número de documento: {{user.documentNumber}}</p>
+      <p>Fecha de nacimiento: {{user.dob}}</p>
+      <p>Correo electrónico: {{user.email}}</p>
+      <p>Grado académico: {{user.education}}</p>
+      <p>Género: {{user.gender}}</p>
+      <p>Número de telefono: {{user.phoneNumber}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
