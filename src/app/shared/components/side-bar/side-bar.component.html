@@ -1,9 +1,9 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="showSidebar">
     <mat-list role="list" style="width:240px;">
-      <mat-list-item role="listitem" [routerLink]="['/']">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <div matListItemTitle>Inicio</div>
+      <mat-list-item role="listitem" [routerLink]="['/board']">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <div matListItemTitle>Tablero</div>
       </mat-list-item>
       <mat-list-item role="listitem" [routerLink]="['/users']">
         <mat-icon matListItemIcon>person</mat-icon>
@@ -13,11 +13,15 @@
         <mat-icon matListItemIcon>book</mat-icon>
         <div matListItemTitle>Cursos</div>
       </mat-list-item>
+      <mat-list-item role="listitem" [routerLink]="['/enrollmentsen']">
+        <mat-icon matListItemIcon>reorder</mat-icon>
+        <div matListItemTitle>Inscripciones</div>
+      </mat-list-item>
       <mat-list-item role="listitem" [routerLink]="['/reports']">
         <mat-icon matListItemIcon>folder</mat-icon>
         <div matListItemTitle>Reportes</div>
       </mat-list-item>
-      <mat-list-item role="listitem" [routerLink]="['/auth']">
+      <mat-list-item role="listitem" [routerLink]="['/auth/login']">
         <mat-icon matListItemIcon>exit_to_app</mat-icon>
         <div matListItemTitle>Cerrar Sesión</div>
       </mat-list-item>

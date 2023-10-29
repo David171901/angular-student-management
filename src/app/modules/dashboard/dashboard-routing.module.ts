@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersPageComponent } from './users/pages/users-page/users-page.component';
 import { CoursesPageComponent } from './courses/pages/courses-page/courses-page.component';
 import { ReportsPageComponent } from './reports/pages/reports-page/reports-page.component';
+import { BoardPageComponent } from './board/pages/board-page/board-page.component';
+import { EnrollmentsenPageComponent } from './enrollmentsen/pages/enrollmentsen-page/enrollmentsen-page.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: UsersPageComponent,
-    loadChildren: () => import(`./users/users.module`).then(m => m.UsersModule),
+    path: 'board',
+    component: BoardPageComponent,
+    loadChildren: () => import(`./board/board.module`).then(m => m.BoardModule),
   },
   {
     path: 'users',
@@ -21,10 +23,15 @@ const routes: Routes = [
     loadChildren: () => import(`./courses/courses.module`).then(m => m.CoursesModule),
   },
   {
+    path: 'enrollmentsen',
+    component: EnrollmentsenPageComponent,
+    loadChildren: () => import(`./enrollmentsen/enrollmentsen.module`).then(m => m.EnrollmentsenModule),
+  },
+  {
     path: 'reports',
     component: ReportsPageComponent,
     loadChildren: () => import(`./reports/reports.module`).then(m => m.ReportsModule),
-  },
+  }
 ];
 
 @NgModule({
