@@ -4,7 +4,7 @@ import { UsersPageComponent } from './users/pages/users-page/users-page.componen
 import { CoursesPageComponent } from './courses/pages/courses-page/courses-page.component';
 import { ReportsPageComponent } from './reports/pages/reports-page/reports-page.component';
 import { BoardPageComponent } from './board/pages/board-page/board-page.component';
-import { EnrollmentsenPageComponent } from './enrollmentsen/pages/enrollmentsen-page/enrollmentsen-page.component';
+import { EnrollmentPageComponent } from './enrollments/pages/enrollment-page/enrollment-page.component';
 
 const routes: Routes = [
   {
@@ -14,7 +14,6 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    component: UsersPageComponent,
     loadChildren: () => import(`./users/users.module`).then(m => m.UsersModule),
   },
   {
@@ -23,9 +22,9 @@ const routes: Routes = [
     loadChildren: () => import(`./courses/courses.module`).then(m => m.CoursesModule),
   },
   {
-    path: 'enrollmentsen',
-    component: EnrollmentsenPageComponent,
-    loadChildren: () => import(`./enrollmentsen/enrollmentsen.module`).then(m => m.EnrollmentsenModule),
+    path: 'enrollments',
+    component: EnrollmentPageComponent,
+    loadChildren: () => import(`./enrollments/enrollments.module`).then(m => m.EnrollmentsModule),
   },
   {
     path: 'reports',
@@ -34,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/board'
+    redirectTo: 'board'
   }
 ];
 

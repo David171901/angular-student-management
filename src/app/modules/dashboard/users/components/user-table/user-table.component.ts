@@ -3,11 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
-import { User } from 'src/app/core/user';
 import { UserFormComponent } from '../user-form/user-form.component';
 import * as moment from 'moment';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { UsersService } from '../../services/users.service';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-user-table',

@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/app/core/user';
 import { lettersOnlyValidator, phoneNumberValidator } from 'src/app/utils/custom-validators';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-user-form',

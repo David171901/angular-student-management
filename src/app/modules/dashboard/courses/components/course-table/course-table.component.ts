@@ -2,12 +2,12 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Course } from 'src/app/core/course';
 import { MatSort } from '@angular/material/sort';
 import { CourseFormComponent } from '../course-form/course-form.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import * as moment from 'moment';
 import { CoursesService } from '../../services/courses.service';
+import { Course } from '../../models';
 
 @Component({
   selector: 'app-course-table',
