@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 import * as moment from 'moment';
 import { CoursesService } from '../../services/courses.service';
 import { Course } from '../../models';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-table',
@@ -16,15 +17,17 @@ import { Course } from '../../models';
 })
 export class CourseTableComponent implements AfterViewInit {
   res!: Course[];
-  dataSource! : any;
+  dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _coursesService: CoursesService) {
-    this.res = this._coursesService.getCoursesList();
-    this.dataSource = new MatTableDataSource<Course>(this.res);
+  constructor(public _dialog: MatDialog, private _coursesService: CoursesService, private snackBar: MatSnackBar) {
+    this._coursesService.getCourses$().subscribe({
+      next: (result) => {
+        this.dataSource = new MatTableDataSource<Course>(result);
+      }
+    })
   }
 
   displayedColumns: string[] = ['courseName', 'courseDescription', 'professor', 'area', 'maxStudents', 'action'];
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -43,49 +46,64 @@ export class CourseTableComponent implements AfterViewInit {
     }
   }
 
-  openAddEditUserForm() {
+  openAddCourseForm() {
     this._dialog
-    .open(CourseFormComponent)
-    .afterClosed()
-    .subscribe({
-      next: (v: Course) => {
-        if (!!v) {
-          this.res = [
-            {
+      .open(CourseFormComponent)
+      .afterClosed()
+      .subscribe({
+        next: (v: Course) => {
+          if (!!v) {
+            this._coursesService.createCourse$({
               ...v,
               startDate: moment(v.startDate as Date).format('YYYY-MM-DD'),
               endDate: moment(v.endDate as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
-            },
-            ...this.res,
-          ];
-          this.dataSource = new MatTableDataSource<Course>(this.res);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        }
-      },
-    });
+            }).subscribe({
+              next: (result) => {
+                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              },
+              complete: () => {
+                this.snackBar.open("Curso creado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
+              }
+            })
+          }
+        },
+      });
   }
 
-  deleteUser(userId: string): void {
+  deleteCourse(courseId: string): void {
     this._dialog
-    .open(ConfirmationDialogComponent, {
-      data: "¿Estas seguro que deseas eliminar este curso?"
-    })
-    .afterClosed()
-    .subscribe({
-      next: (v: Boolean) => {
-        if(v) {
-          this.res = this.res.filter((u) => u.id !== userId);
-          this.dataSource = new MatTableDataSource<Course>(this.res);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        }
-      },
-    });
+      .open(ConfirmationDialogComponent, {
+        data: "¿Estas seguro que deseas eliminar este curso?"
+      })
+      .afterClosed()
+      .subscribe({
+        next: (v: Boolean) => {
+          if (v) {
+            this._coursesService.deleteCourse$(courseId).subscribe({
+              next: (result) => {
+                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              },
+              complete: () => {
+                this.snackBar.open("Curso eliminado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
+              }
+            })
+          }
+        },
+      });
   }
 
-  editUser(course: Course): void {
+  editCourse(course: Course): void {
     this._dialog
       .open(CourseFormComponent, {
         data: course,
@@ -94,12 +112,19 @@ export class CourseTableComponent implements AfterViewInit {
       .subscribe({
         next: (v) => {
           if (!!v) {
-            this.res = this.res.map((u) =>
-              u.id === course.id ? { ...u, ...v } : u
-            );
-            this.dataSource = new MatTableDataSource<Course>(this.res);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
+            this._coursesService.editCourse$(course.id, v).subscribe({
+              next: (result) => {
+                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              },
+              complete: () => {
+                this.snackBar.open("Curso actualizado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
+              }
+            })
           }
         },
       });

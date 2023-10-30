@@ -17,11 +17,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-table.component.css'],
 })
 export class UserTableComponent implements AfterViewInit {
-  res!: Student[];
   dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _StudentsService: StudentsService, private snackBar: MatSnackBar) {
-    this._StudentsService.getUsers$().subscribe({
+  constructor(public _dialog: MatDialog, private _studentsService: StudentsService, private snackBar: MatSnackBar) {
+    this._studentsService.getUsers$().subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource<Student>(result);
       }
@@ -54,7 +53,7 @@ export class UserTableComponent implements AfterViewInit {
       .subscribe({
         next: (v: Student) => {
           if (!!v) {
-            this._StudentsService.createUser$({
+            this._studentsService.createUser$({
               ...v,
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
@@ -85,7 +84,7 @@ export class UserTableComponent implements AfterViewInit {
       .subscribe({
         next: (v: Boolean) => {
           if (!!v) {
-            this._StudentsService.deleteUser$(userId).subscribe({
+            this._studentsService.deleteUser$(userId).subscribe({
               next: (result) => {
                 this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
@@ -112,7 +111,7 @@ export class UserTableComponent implements AfterViewInit {
       .subscribe({
         next: (v) => {
           if (!!v) {
-            this._StudentsService.editUser$(user.id, {
+            this._studentsService.editUser$(user.id, {
               ...v,
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
             }).subscribe({
