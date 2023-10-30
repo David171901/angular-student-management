@@ -8,7 +8,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailPageComponent } from './pages/user-detail-page/user-detail-page.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { UserDetailPageComponent } from './pages/user-detail-page/user-detail-pa
     UsersRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ]
 })
 export class UsersModule { }

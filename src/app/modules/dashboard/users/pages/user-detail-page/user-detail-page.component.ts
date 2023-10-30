@@ -17,7 +17,6 @@ export class UserDetailPageComponent implements OnInit {
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const userIdFromRoute = routeParams.get('userId');
-    console.log("🚀 ~ file: user-detail-page.component.ts:20 ~ UserDetailPageComponent ~ ngOnInit ~ userIdFromRoute:", userIdFromRoute)
     console.log(this._usersService.getUsersList())
     this.user = this._usersService.getUsersList().find((user: any) => user.id === userIdFromRoute);
     console.log(this.user)

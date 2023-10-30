@@ -34,13 +34,13 @@ export class UserFormComponent {
     this.minDate = new Date(currentYear - 100, 0, 1);
 
     this.userForm = this._fb.group({
-      firstName: ['', [Validators.required, lettersOnlyValidator()]],
-      lastName: ['', [Validators.required, lettersOnlyValidator()]],
-      documentNumber: ['', Validators.required],
+      firstName: ['David', [Validators.required, lettersOnlyValidator()]],
+      lastName: ['Marcelo', [Validators.required, lettersOnlyValidator()]],
+      documentNumber: ['74865987', Validators.required],
       dob: [, Validators.required],
-      gender: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, phoneNumberValidator()]],
+      gender: ['male', Validators.required],
+      email: ['david.pino@unmsm.edu.pe', [Validators.required, Validators.email]],
+      phoneNumber: ['992871521', [Validators.required, phoneNumberValidator()]],
       education: ['', Validators.required],
     })
 
