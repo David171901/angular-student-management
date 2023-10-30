@@ -1,33 +1,33 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { CourseFormComponent } from '../course-form/course-form.component';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { UserFormComponent } from '../user-form/user-form.component';
 import * as moment from 'moment';
-import { CoursesService } from '../../services/courses.service';
-import { Course } from '../../models';
+import { StudentsService } from '../../services/students.service';
+import { Student } from '../../models';
+import { Observable } from 'rxjs';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-course-table',
-  templateUrl: './course-table.component.html',
-  styleUrls: ['./course-table.component.css']
+  selector: 'app-user-table',
+  templateUrl: './user-table.component.html',
+  styleUrls: ['./user-table.component.css'],
 })
-export class CourseTableComponent implements AfterViewInit {
-  res!: Course[];
+export class UserTableComponent implements AfterViewInit {
   dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _coursesService: CoursesService, private snackBar: MatSnackBar) {
-    this._coursesService.getCourses$().subscribe({
+  constructor(public _dialog: MatDialog, private _studentsService: StudentsService, private snackBar: MatSnackBar) {
+    this._studentsService.getUsers$().subscribe({
       next: (result) => {
-        this.dataSource = new MatTableDataSource<Course>(result);
+        this.dataSource = new MatTableDataSource<Student>(result);
       }
     })
   }
 
-  displayedColumns: string[] = ['courseName', 'courseDescription', 'professor', 'area', 'maxStudents', 'action'];
+  displayedColumns: string[] = ['firstName', 'documentNumber', 'dob', 'email', 'education', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -46,26 +46,25 @@ export class CourseTableComponent implements AfterViewInit {
     }
   }
 
-  openAddCourseForm() {
+  openAddUserForm() {
     this._dialog
-      .open(CourseFormComponent)
+      .open(UserFormComponent)
       .afterClosed()
       .subscribe({
-        next: (v: Course) => {
+        next: (v: Student) => {
           if (!!v) {
-            this._coursesService.createCourse$({
+            this._studentsService.createUser$({
               ...v,
-              startDate: moment(v.startDate as Date).format('YYYY-MM-DD'),
-              endDate: moment(v.endDate as Date).format('YYYY-MM-DD'),
+              dob: moment(v.dob as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
             }).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
               complete: () => {
-                this.snackBar.open("Curso creado", "", {
+                this.snackBar.open("Usuario creado", "", {
                   duration: 1000,
                   verticalPosition: 'bottom',
                 });
@@ -76,23 +75,23 @@ export class CourseTableComponent implements AfterViewInit {
       });
   }
 
-  deleteCourse(courseId: string): void {
+  deleteUser(userId: string): void {
     this._dialog
       .open(ConfirmationDialogComponent, {
-        data: "¿Estas seguro que deseas eliminar este curso?"
+        data: "¿Estas seguro que deseas eliminar este usuario?"
       })
       .afterClosed()
       .subscribe({
         next: (v: Boolean) => {
-          if (v) {
-            this._coursesService.deleteCourse$(courseId).subscribe({
+          if (!!v) {
+            this._studentsService.deleteUser$(userId).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
               complete: () => {
-                this.snackBar.open("Curso eliminado", "", {
+                this.snackBar.open("Usuario eliminado", "", {
                   duration: 1000,
                   verticalPosition: 'bottom',
                 });
@@ -103,23 +102,26 @@ export class CourseTableComponent implements AfterViewInit {
       });
   }
 
-  editCourse(course: Course): void {
+  editUser(user: Student): void {
     this._dialog
-      .open(CourseFormComponent, {
-        data: course,
+      .open(UserFormComponent, {
+        data: user,
       })
       .afterClosed()
       .subscribe({
         next: (v) => {
           if (!!v) {
-            this._coursesService.editCourse$(course.id, v).subscribe({
+            this._studentsService.editUser$(user.id, {
+              ...v,
+              dob: moment(v.dob as Date).format('YYYY-MM-DD'),
+            }).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
               complete: () => {
-                this.snackBar.open("Curso actualizado", "", {
+                this.snackBar.open("Usuario actualizado", "", {
                   duration: 1000,
                   verticalPosition: 'bottom',
                 });

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { lettersOnlyValidator, phoneNumberValidator } from 'src/app/utils/custom-validators';
-import { User } from '../../models';
+import { Student } from '../../models';
 
 @Component({
   selector: 'app-user-form',
@@ -27,7 +27,7 @@ export class UserFormComponent {
   constructor(
     private _fb: FormBuilder, 
     public _dialog: MatDialogRef<UserFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public user?: User
+    @Inject(MAT_DIALOG_DATA) public user?: Student
   ) {
     const currentYear = new Date().getFullYear();
     this.maxDate = new Date();

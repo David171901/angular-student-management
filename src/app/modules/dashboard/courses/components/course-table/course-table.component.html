@@ -1,5 +1,5 @@
 <div class="tools">
-  <button mat-raised-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" color="primary" (click)="openAddEditUserForm()">
+  <button mat-raised-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" color="primary" (click)="openAddCourseForm()">
     AGREGAR CURSO
   </button>
 </div>
@@ -45,10 +45,10 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef appUppercase> Acciones </th>
       <td mat-cell *matCellDef="let course">
-        <button mat-icon-button color="" primary (click)="editUser(course)">
+        <button mat-icon-button color="" primary (click)="editCourse(course)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteUser(course.id)">
+        <button mat-icon-button color="warn" (click)="deleteCourse(course.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

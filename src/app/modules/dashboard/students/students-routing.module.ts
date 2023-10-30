@@ -9,7 +9,7 @@ const routes: Routes = [
     component: UsersPageComponent,
   },
   {
-    path: 'detail/:userId',
+    path: 'detail/:studentId',
     component: UserDetailPageComponent,
   },
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class StudentsRoutingModule { }
