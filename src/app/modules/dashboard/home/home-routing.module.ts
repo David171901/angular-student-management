@@ -1,20 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersPageComponent } from '../users/pages/users-page/users-page.component';
 import { CoursesPageComponent } from '../courses/pages/courses-page/courses-page.component';
 
-const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: UsersPageComponent,
-  //   loadChildren: () => import(`../users/users.module`).then(m => m.StudentsModule),
-  // },
-  // {
-  //   path: 'courses',
-  //   component: CoursesPageComponent,
-  //   loadChildren: () => import(`../courses/courses.module`).then(m => m.CoursesModule),
-  // },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

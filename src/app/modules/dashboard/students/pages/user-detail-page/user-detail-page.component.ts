@@ -10,16 +10,14 @@ import { Student } from '../../models';
 })
 export class UserDetailPageComponent implements OnInit {
 
-  user: Student | undefined;
+  student: Student | undefined;
 
   constructor(private route: ActivatedRoute, private _StudentsService: StudentsService) { }
 
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
-    const userIdFromRoute = routeParams.get('userId');
-    console.log(this._StudentsService.getUsersList())
-    this.user = this._StudentsService.getUsersList().find((user: any) => user.id === userIdFromRoute);
-    console.log(this.user)
+    const studentIdFromRoute = routeParams.get('studentId');
+    this.student = this._StudentsService.getUsersList().find((student: any) => student.id === studentIdFromRoute);
   }
 
 }
