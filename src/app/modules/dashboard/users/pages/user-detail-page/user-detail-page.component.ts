@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsersService } from '../../services/users.service';
-import { User } from '../../models';
+import { StudentsService } from '../../services/students.service';
+import { Student } from '../../models';
 
 @Component({
   selector: 'app-user-detail-page',
@@ -10,15 +10,15 @@ import { User } from '../../models';
 })
 export class UserDetailPageComponent implements OnInit {
 
-  user: User | undefined;
+  user: Student | undefined;
 
-  constructor(private route: ActivatedRoute, private _usersService: UsersService) { }
+  constructor(private route: ActivatedRoute, private _StudentsService: StudentsService) { }
 
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const userIdFromRoute = routeParams.get('userId');
-    console.log(this._usersService.getUsersList())
-    this.user = this._usersService.getUsersList().find((user: any) => user.id === userIdFromRoute);
+    console.log(this._StudentsService.getUsersList())
+    this.user = this._StudentsService.getUsersList().find((user: any) => user.id === userIdFromRoute);
     console.log(this.user)
   }
 

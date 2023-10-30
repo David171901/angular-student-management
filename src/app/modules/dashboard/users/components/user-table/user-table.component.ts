@@ -5,10 +5,11 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { UserFormComponent } from '../user-form/user-form.component';
 import * as moment from 'moment';
-import { UsersService } from '../../services/users.service';
-import { User } from '../../models';
+import { StudentsService } from '../../services/students.service';
+import { Student } from '../../models';
 import { Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-table',
@@ -16,13 +17,13 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
   styleUrls: ['./user-table.component.css'],
 })
 export class UserTableComponent implements AfterViewInit {
-  res!: User[];
+  res!: Student[];
   dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _usersService: UsersService) {
-    this._usersService.getUsers$().subscribe({
+  constructor(public _dialog: MatDialog, private _StudentsService: StudentsService, private snackBar: MatSnackBar) {
+    this._StudentsService.getUsers$().subscribe({
       next: (result) => {
-        this.dataSource = new MatTableDataSource<User>(result);
+        this.dataSource = new MatTableDataSource<Student>(result);
       }
     })
   }
@@ -51,17 +52,23 @@ export class UserTableComponent implements AfterViewInit {
       .open(UserFormComponent)
       .afterClosed()
       .subscribe({
-        next: (v: User) => {
+        next: (v: Student) => {
           if (!!v) {
-            this._usersService.createUser$({
+            this._StudentsService.createUser$({
               ...v,
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
             }).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<User>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
+              },
+              complete: () => {
+                this.snackBar.open("Usuario creado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
               }
             })
           }
@@ -78,22 +85,25 @@ export class UserTableComponent implements AfterViewInit {
       .subscribe({
         next: (v: Boolean) => {
           if (!!v) {
-            this._usersService.deleteUser$(userId).subscribe({
+            this._StudentsService.deleteUser$(userId).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<User>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
-              // complete: () => {
-              //   this._coreService.openSnackBar('Employee detail updated!');
-              // }
+              complete: () => {
+                this.snackBar.open("Usuario eliminado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
+              }
             })
           }
         },
       });
   }
 
-  editUser(user: User): void {
+  editUser(user: Student): void {
     this._dialog
       .open(UserFormComponent, {
         data: user,
@@ -102,14 +112,20 @@ export class UserTableComponent implements AfterViewInit {
       .subscribe({
         next: (v) => {
           if (!!v) {
-            this._usersService.editUser$(user.id, {
+            this._StudentsService.editUser$(user.id, {
               ...v,
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
             }).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<User>(result);
+                this.dataSource = new MatTableDataSource<Student>(result);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
+              },
+              complete: () => {
+                this.snackBar.open("Usuario actualizado", "", {
+                  duration: 1000,
+                  verticalPosition: 'bottom',
+                });
               }
             })
           }
