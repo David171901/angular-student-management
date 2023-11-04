@@ -21,7 +21,7 @@ npm install
 ```
 ng serve
 ```
-![Alt text](image.png)
-![Alt text](image-1.png)
-![Alt text](image-2.png)
-![Alt text](image-3.png)
+![Alt text](/src/assets/readme/photo1.png)
+![Alt text](/src/assets/readme/photo2.png)
+![Alt text](/src/assets/readme/photo3.png)
+![Alt text](/src/assets/readme/photo4.png)
