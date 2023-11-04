@@ -45,7 +45,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef appUppercase> Acciones </th>
       <td mat-cell *matCellDef="let user">
-        <button  [routerLink]="['/users/detail', user.id]" mat-icon-button color="accent">
+        <button  [routerLink]="['/students/detail', user.id]" mat-icon-button color="accent">
           <mat-icon>visibility</mat-icon>
         </button>
         <button mat-icon-button color="" primary (click)="editUser(user)">
