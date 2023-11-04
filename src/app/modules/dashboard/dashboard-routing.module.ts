@@ -4,36 +4,43 @@ import { CoursesPageComponent } from './courses/pages/courses-page/courses-page.
 import { ReportsPageComponent } from './reports/pages/reports-page/reports-page.component';
 import { BoardPageComponent } from './board/pages/board-page/board-page.component';
 import { EnrollmentPageComponent } from './enrollments/pages/enrollment-page/enrollment-page.component';
+import { HomePageComponent } from './home/pages/home-page/home-page.component';
 
 const routes: Routes = [
   {
-    path: 'board',
-    component: BoardPageComponent,
-    loadChildren: () => import(`./board/board.module`).then(m => m.BoardModule),
+    path: '',
+    component: HomePageComponent,
+    children: [
+      {
+        path: 'board',
+        component: BoardPageComponent,
+        loadChildren: () => import(`./board/board.module`).then(m => m.BoardModule),
+      },
+      {
+        path: 'students',
+        loadChildren: () => import(`./students/students.module`).then(m => m.StudentsModule),
+      },
+      {
+        path: 'courses',
+        component: CoursesPageComponent,
+        loadChildren: () => import(`./courses/courses.module`).then(m => m.CoursesModule),
+      },
+      {
+        path: 'enrollments',
+        component: EnrollmentPageComponent,
+        loadChildren: () => import(`./enrollments/enrollments.module`).then(m => m.EnrollmentsModule),
+      },
+      {
+        path: 'reports',
+        component: ReportsPageComponent,
+        loadChildren: () => import(`./reports/reports.module`).then(m => m.ReportsModule),
+      },
+      {
+        path: '**',
+        redirectTo: 'board'
+      }
+    ]
   },
-  {
-    path: 'students',
-    loadChildren: () => import(`./students/students.module`).then(m => m.StudentsModule),
-  },
-  {
-    path: 'courses',
-    component: CoursesPageComponent,
-    loadChildren: () => import(`./courses/courses.module`).then(m => m.CoursesModule),
-  },
-  {
-    path: 'enrollments',
-    component: EnrollmentPageComponent,
-    loadChildren: () => import(`./enrollments/enrollments.module`).then(m => m.EnrollmentsModule),
-  },
-  {
-    path: 'reports',
-    component: ReportsPageComponent,
-    loadChildren: () => import(`./reports/reports.module`).then(m => m.ReportsModule),
-  },
-  {
-    path: '**',
-    redirectTo: 'board'
-  }
 ];
 
 @NgModule({
