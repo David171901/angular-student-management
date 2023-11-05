@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,26 +15,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './course-table.component.html',
   styleUrls: ['./course-table.component.css']
 })
-export class CourseTableComponent implements AfterViewInit {
+export class CourseTableComponent implements OnInit {
   res!: Course[];
   dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _coursesService: CoursesService, private snackBar: MatSnackBar) {
-    this._coursesService.getCourses$().subscribe({
-      next: (result) => {
-        this.dataSource = new MatTableDataSource<Course>(result);
-      }
-    })
-  }
+  constructor(public _dialog: MatDialog, private _coursesService: CoursesService, private snackBar: MatSnackBar) { }
 
   displayedColumns: string[] = ['courseName', 'courseDescription', 'professor', 'area', 'maxStudents', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  ngOnInit() {
+    this.getCoursesList()
   }
 
   applyFilter(event: Event) {
@@ -44,6 +37,16 @@ export class CourseTableComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getCoursesList() {
+    this._coursesService.getCourses$().subscribe({
+      next: (result) => {
+        this.dataSource = new MatTableDataSource<Course>(result);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    })
   }
 
   openAddCourseForm() {
@@ -59,8 +62,8 @@ export class CourseTableComponent implements AfterViewInit {
               endDate: moment(v.endDate as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
             }).subscribe({
-              next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+              next: () => {
+                this.getCoursesList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
@@ -86,8 +89,8 @@ export class CourseTableComponent implements AfterViewInit {
         next: (v: Boolean) => {
           if (v) {
             this._coursesService.deleteCourse$(courseId).subscribe({
-              next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+              next: () => {
+                this.getCoursesList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
@@ -113,8 +116,8 @@ export class CourseTableComponent implements AfterViewInit {
         next: (v) => {
           if (!!v) {
             this._coursesService.editCourse$(course.id, v).subscribe({
-              next: (result) => {
-                this.dataSource = new MatTableDataSource<Course>(result);
+              next: () => {
+                this.getCoursesList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
