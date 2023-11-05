@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import * as dataRaw from '../../../../data/users.json'
 import { Student } from '../models';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +11,25 @@ import { Observable, of } from 'rxjs';
 export class StudentsService {
   users: Student[] = (dataRaw as any).default.data;
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
 
-  getUsersList() {
-    const { data }: any = (dataRaw as any).default;
-    return data;
+  getUsers$(): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/students`);
   }
 
-  getUsers$(): Observable<Student[]> {
-    return of(this.users);
+  getUserById$(id: string): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/students/${id}`);
   }
 
-  createUser$(payload: Student): Observable<Student[]> {
-    this.users.push(payload);
-    return of([...this.users]);
+  createUser$(payload: Student): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/students`,payload);
   }
 
-  editUser$(id: string, payload: Student): Observable<Student[]> {
-    return of(
-      this.users.map((c) => (c.id === id ? { ...c, ...payload } : c))
-    );
+  editUser$(id: string, payload: Student): Observable<any> {
+    return this._http.put(`${environment.apiUrl}/students/${id}`, payload);
   }
-
-  deleteUser$(id: string): Observable<Student[]> {
-    this.users = this.users.filter((c) => c.id !== id);
-    return of(this.users);
-  }
-
-  getUserById$(id: string): Observable<Student | undefined> {
-    return of(this.users.find((c) => c.id === id));
+  
+  deleteUser$(id: string): Observable<any> {
+    return this._http.delete(`${environment.apiUrl}/students/${id}`);
   }
 }

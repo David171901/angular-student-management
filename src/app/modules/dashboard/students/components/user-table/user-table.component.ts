@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -16,25 +16,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css'],
 })
-export class UserTableComponent implements AfterViewInit {
+export class UserTableComponent implements OnInit {
   dataSource!: any;
 
-  constructor(public _dialog: MatDialog, private _studentsService: StudentsService, private snackBar: MatSnackBar) {
-    this._studentsService.getUsers$().subscribe({
-      next: (result) => {
-        this.dataSource = new MatTableDataSource<Student>(result);
-      }
-    })
-  }
+  constructor(public _dialog: MatDialog, private _studentsService: StudentsService, private snackBar: MatSnackBar) {}
 
   displayedColumns: string[] = ['firstName', 'documentNumber', 'dob', 'email', 'education', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  ngOnInit() {
+    this.getStudentsList()
   }
 
   applyFilter(event: Event) {
@@ -44,6 +37,16 @@ export class UserTableComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getStudentsList() {
+    this._studentsService.getUsers$().subscribe({
+      next: (result) => {
+        this.dataSource = new MatTableDataSource<Student>(result);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    })
   }
 
   openAddUserForm() {
@@ -58,8 +61,8 @@ export class UserTableComponent implements AfterViewInit {
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
               id: crypto.randomUUID(),
             }).subscribe({
-              next: (result) => {
-                this.dataSource = new MatTableDataSource<Student>(result);
+              next: () => {
+                this.getStudentsList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
@@ -85,8 +88,8 @@ export class UserTableComponent implements AfterViewInit {
         next: (v: Boolean) => {
           if (!!v) {
             this._studentsService.deleteUser$(userId).subscribe({
-              next: (result) => {
-                this.dataSource = new MatTableDataSource<Student>(result);
+              next: () => {
+                this.getStudentsList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },
@@ -116,7 +119,7 @@ export class UserTableComponent implements AfterViewInit {
               dob: moment(v.dob as Date).format('YYYY-MM-DD'),
             }).subscribe({
               next: (result) => {
-                this.dataSource = new MatTableDataSource<Student>(result);
+                this.getStudentsList();
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
               },

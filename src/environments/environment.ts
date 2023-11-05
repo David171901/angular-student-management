@@ -1,4 +1,4 @@
 export const environment = {
-  // TODO
-  apiUrl: 'http://localhost:3000'
+  production: true,
+  apiUrl: 'https://angular-student-management-431a00bdd577.herokuapp.com'
 };

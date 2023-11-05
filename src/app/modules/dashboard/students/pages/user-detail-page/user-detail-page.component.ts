@@ -12,12 +12,21 @@ export class UserDetailPageComponent implements OnInit {
 
   student: Student | undefined;
 
-  constructor(private route: ActivatedRoute, private _StudentsService: StudentsService) { }
+  constructor(private route: ActivatedRoute, private _studentsService: StudentsService) { }
 
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const studentIdFromRoute = routeParams.get('studentId');
-    this.student = this._StudentsService.getUsersList().find((student: any) => student.id === studentIdFromRoute);
+    if (studentIdFromRoute) {
+      this._studentsService.getUserById$(studentIdFromRoute).subscribe({
+        next: (result) => {
+          if (result) {
+            this.student = result;
+          }
+        },
+
+      })
+    }
   }
 
 }
