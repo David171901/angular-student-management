@@ -1,0 +1,15 @@
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .mat-table {
+    font-size: 14px;
+  }
+}

@@ -43,7 +43,6 @@ export class CourseFormComponent {
     if (this.courseForm.invalid) {
       this.courseForm.markAllAsTouched();
     } else {
-      console.log(this.courseForm.value)
       this._dialog.close(this.courseForm.value);
     }
   }

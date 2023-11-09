@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,10 +11,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class SideBarComponent {
   @Input() showSidebar = false;
 
-  constructor(private router: Router, private _cookie: CookieService) {}
+  constructor(private _authService: AuthService) {}
 
   logout () {
-    this._cookie.delete('token');
-    this.router.navigate(['/','auth']);
+    this._authService.logout();
   }
 }

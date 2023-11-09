@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, tap } from 'rxjs';
 
@@ -8,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
 
-  constructor( private _http: HttpClient, private _cookie: CookieService ) { }
+  constructor( private _http: HttpClient, private _cookie: CookieService, private router: Router ) { }
 
   sendCredentials(username: string, password: string): Observable<any> {
     const body = {
@@ -21,5 +22,10 @@ export class AuthService {
         this._cookie.set('token', token, 4, '/')
       })
     )
+  }
+
+  logout() {
+    this._cookie.delete('token');
+    this.router.navigate(['/','auth']);
   }
 }

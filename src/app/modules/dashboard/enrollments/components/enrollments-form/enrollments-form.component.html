@@ -1,0 +1,33 @@
+<div mat-dialog-title>
+  <h1>{{ enrollment ? "Editar inscripcion" : "Crear inscripcion" }}</h1>
+</div>
+<form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Estudiantes</mat-label>
+        <mat-select formControlName="studentId">
+          <mat-option *ngFor="let val of students" [value]="val.id">{{val.firstName | fullName:val.lastName}}</mat-option>
+        </mat-select>
+        <mat-error>
+          {{ enrollmentForm.get("student")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Cursos</mat-label>
+        <mat-select formControlName="courseId">
+          <mat-option *ngFor="let val of courses" [value]="val.id">{{val.courseName}}</mat-option>
+        </mat-select>
+        <mat-error>
+          {{ enrollmentForm.get("course")?.errors | formErrors }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">{{ enrollment ? "Editar" : "Guardar" }}</button>
+  </div>
+</form>

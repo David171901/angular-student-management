@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as dataRaw from '../../../../data/users.json'
 import { Student } from '../models';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,8 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class StudentsService {
-  users: Student[] = (dataRaw as any).default.data;
-
   constructor(private _http: HttpClient) { }
 
   getUsers$(): Observable<any> {
