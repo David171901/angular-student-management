@@ -433,5 +433,47 @@
       "endDate": "2024-02-05",
       "maxStudents": 35
     }
+  ],
+  "enrollments": [
+    {
+      "student": "a18ecf10-73b3-46f2-8c50-a0c423dafae2",
+      "course": "d452de0b-93eb-483a-8469-928b107b2447",
+      "studentName": "Jane Smith",
+      "studentDocument": 23456789,
+      "courseName": "Desarrollo de Aplicaciones Móviles",
+      "id": "309fb069-74ef-48ba-81cd-3e77dc7be6eb"
+    },
+    {
+      "studentId": "807e5db0-950b-4587-af65-94297f2307db",
+      "courseId": "d452de0b-93eb-483a-8469-928b107b2447",
+      "studentName": "David Johnson",
+      "studentDocument": 34567890,
+      "courseName": "Desarrollo de Aplicaciones Móviles",
+      "id": "e32986a1-97b4-46dd-b9a3-790065da4634"
+    },
+    {
+      "studentId": "51ff624b-a1a2-40ec-ba83-c6574d46e840",
+      "courseId": "d452de0b-93eb-483a-8469-928b107b2447",
+      "studentName": "Michael Lee",
+      "studentDocument": 56789012,
+      "courseName": "Desarrollo de Aplicaciones Móviles",
+      "id": "801ab6ea-19d5-41e0-be02-aa66a5c6c237"
+    },
+    {
+      "studentId": "51ff624b-a1a2-40ec-ba83-c6574d46e840",
+      "courseId": "c6ce8b48-382a-47d7-9b57-16d28e3e4ff2",
+      "studentName": "Michael Lee",
+      "studentDocument": 56789012,
+      "courseName": "Introducción a la Programación en Python",
+      "id": "9fd1d100-bcf2-40cd-8c0b-948c1e70daba"
+    },
+    {
+      "studentId": "edc5c8db-46bd-4a26-ab4d-d7af41427c78",
+      "courseId": "3e8cb5c1-e786-4c96-8935-77eeb48b0c7f",
+      "studentName": "Daniel Chen",
+      "studentDocument": 89012345,
+      "courseName": "Programación en C++",
+      "id": "1fc08ee0-9040-46be-b2b5-7ebf194b8eb4"
+    }
   ]
 }
